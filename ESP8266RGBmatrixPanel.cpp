@@ -34,13 +34,7 @@ ESP8266RGBmatrixPanel::ESP8266RGBmatrixPanel(uint8 r1, uint8 g1, uint8 bl1, uint
 	pinMode(R2, OUTPUT);
 	pinMode(BL2, OUTPUT);
 
-	for (int x = 0; x < 64; x++)
-	{
-		for (int y = 0; y < 32; y++)
-		{
-			pixel[x][y] = 0;
-		}
-	}
+	fillScreen(0);
 }
 
 void ESP8266RGBmatrixPanel::testmuster()
@@ -101,7 +95,72 @@ void ESP8266RGBmatrixPanel::drawPixel(int16_t x, int16_t y, uint16_t c) {
 }
 
 void ESP8266RGBmatrixPanel::fillScreen(uint16_t c) {
+	for (int x = 0; x < 64; x++)
+	{
+		for (int y = 0; y < 32; y++)
+		{
+			pixel[x][y] = c;
+		}
+	}
+}
+
+void ESP8266RGBmatrixPanel::drawBitmap(String bytes)
+{
+	fillScreen(0);
+	uint8 imgWidth = 0;
+	uint8 imgHeigth = 0;
+	if (bytes.length() > 22)
+	{
+		imgWidth = (uint8)(bytes[18]);
+		imgHeigth = (uint8)(bytes[22]);
+	}
+	if (imgWidth != 64 || imgHeigth != 32) 
+	{
+		//error square
+		uint8 x0 = (64 - 16) / 2;
+		uint8 y0 = (32 - 16) / 2;
+		uint8 x1 = x0 + 16;
+		uint8 y1 = y0 + 16;
+		fillScreen(0);
+		drawRect(x0, y0, 17, 17, rmask);
+		drawLine(x0, y0, x1, y1, rmask);
+		drawLine(x0, y1, x1, y0, rmask);
+		return;
+	}
+	uint8 dataOffset = 54;
+	uint8 x = 0;
+	uint8 y = 31;
+	for (uint8 i = dataOffset; i < bytes.length(); i += 3)
+	{
+		pixel[x][y] = 0;
+		uint16 b = (uint16)bytes[i];
+		uint16 g = (uint16)bytes[i + 1];
+		uint16 r = (uint16)bytes[i + 2];
+
+		//0b00000000RRRRRRRR -> 0b000000000000RRRR
+		r = r >> 4;
+		r = r & rmask;
+		//0b00000000GGGGGGGG -> 0b00000000GGGG0000
+		g = g >> 0;
+		g &= gmask;
+
+		//0b00000000BBBBBBBB -> 0b0000BBBB00000000
+		b = b << 4;
+		b &= bmask;
+
+		pixel[x][y] |= r;
+		pixel[x][y] |= g;
+		pixel[x][y] |= b;
+
+		x++;
+		if (x >= 64)
+		{
+			x = 0;
+			y--;
+		}
+	}
 
 }
+
 
 

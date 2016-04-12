@@ -1,5 +1,6 @@
 /*
 Author:	Vitali Gottselig
+https://github.com/VGottselig/ESP8266-RGB-Matrix-Panel
 */
 
 #if ARDUINO >= 100
@@ -36,6 +37,7 @@ class ESP8266RGBmatrixPanel : public Adafruit_GFX {
 		drawPixel(int16_t x, int16_t y, uint16_t c),
 		fillScreen(uint16_t c),
 		updateDisplay(),
+		drawBitmap(String bytes),
 		testmuster();
  private:
 	 uint16 R1;

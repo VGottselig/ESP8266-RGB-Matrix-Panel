@@ -1,7 +1,8 @@
 /*
- Name:		EspRGBLibTest.ino
+ Name:		basictest.ino
  Created:	08.04.2016 19:12:50
  Author:	Gad
+ https://github.com/VGottselig/ESP8266-RGB-Matrix-Panel
 */
 
 #include "Adafruit_GFX.h"

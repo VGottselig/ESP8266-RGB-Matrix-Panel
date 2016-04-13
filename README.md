@@ -3,6 +3,7 @@ Arduino library and example code for the 64x32 <a href="http://www.aliexpress.co
 50% CPU Load <br>
 4096 Colors @ 30FPS<br>
 512 Colors @ 60FPS<br>
+<a href="https://github.com/adafruit/Adafruit-GFX-Library"> Adafruit-GFX-Library</a> support for draw/fill lines, circles, rects, triangles and show text. See <a href="https://github.com/adafruit/RGB-matrix-Panel/tree/master/examples"> examples on Adafruit library for Arduino</a>
 <p align="center">
   <img src="img/photo.JPG?raw=true" width="600"/>
 </p>

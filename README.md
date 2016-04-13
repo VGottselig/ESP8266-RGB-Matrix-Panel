@@ -4,7 +4,10 @@ Arduino library and example code for the 64x32 <a href="http://www.aliexpress.co
 4096 Colors @ 30FPS<br>
 512 Colors @ 60FPS<br>
 <p align="center">
-  <img src="frizzing/connection_arduino.png?raw=true" width="600"/>
+  <img src="img/photo.JPG?raw=true" width="600"/>
+</p>
+<p align="center">
+  <img src="img/connection_arduino.png?raw=true" width="600"/>
 </p>
 Todo: <br>
 Gamma-Correction<br>

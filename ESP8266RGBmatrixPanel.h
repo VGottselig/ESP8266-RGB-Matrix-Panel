@@ -2,7 +2,7 @@
 Author:	Vitali Gottselig
 https://github.com/VGottselig/ESP8266-RGB-Matrix-Panel
 */
-
+typedef unsigned char uint8;
 #if ARDUINO >= 100
  #include "Arduino.h"
 #else
@@ -37,7 +37,7 @@ class ESP8266RGBmatrixPanel : public Adafruit_GFX {
 		drawPixel(int16_t x, int16_t y, uint16_t c),
 		fillScreen(uint16_t c),
 		updateDisplay(),
-		drawBitmap(String bytes),
+		drawBitmap(String* bytes),
 		testmuster();
  private:
 	 uint16 R1;

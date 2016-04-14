@@ -104,17 +104,19 @@ void ESP8266RGBmatrixPanel::fillScreen(uint16_t c) {
 	}
 }
 
-void ESP8266RGBmatrixPanel::drawBitmap(String bytes)
+void ESP8266RGBmatrixPanel::drawBitmap(String* bytes)
 {
 	fillScreen(0);
 	uint8 imgWidth = 0;
 	uint8 imgHeigth = 0;
-	if (bytes.length() > 22)
+
+	if (bytes->length() > 22)
 	{
-		imgWidth = (uint8)(bytes[18]);
-		imgHeigth = (uint8)(bytes[22]);
+		imgWidth = (uint8)((*bytes)[18]);
+		imgHeigth = (uint8)((*bytes)[22]);
 	}
-	if (imgWidth != 64 || imgHeigth != 32) 
+	
+	if (imgWidth != 64 || imgHeigth != 32)
 	{
 		//error square
 		uint8 x0 = (64 - 16) / 2;
@@ -130,12 +132,12 @@ void ESP8266RGBmatrixPanel::drawBitmap(String bytes)
 	uint8 dataOffset = 54;
 	uint8 x = 0;
 	uint8 y = 31;
-	for (uint8 i = dataOffset; i < bytes.length(); i += 3)
+	for (uint16 i = dataOffset; i < bytes->length()-3; i += 3)
 	{
 		pixel[x][y] = 0;
-		uint16 b = (uint16)bytes[i];
-		uint16 g = (uint16)bytes[i + 1];
-		uint16 r = (uint16)bytes[i + 2];
+		uint16 b = (uint16)((*bytes)[i]);
+		uint16 g = (uint16)((*bytes)[i + 1]);
+		uint16 r = (uint16)((*bytes)[i + 2]);
 
 		//0b00000000RRRRRRRR -> 0b000000000000RRRR
 		r = r >> 4;

@@ -27,12 +27,12 @@ extern "C" {
 
 uint8_t CLK = D0;
 uint8_t LAT = D1;
-uint8_t R1 = D4;
-uint8_t G1 = D5;
-uint8_t BL1 = D6;
-uint8_t R2 = D7;
-uint8_t G2 = D8;
-uint8_t BL2 = D9;
+uint8_t R1 = D3;
+uint8_t G1 = D4;
+uint8_t BL1 = D5;
+uint8_t R2 = D6;
+uint8_t G2 = D7;
+uint8_t BL2 = D8;
 
 ESP8266RGBmatrixPanel matrix(R1, G1, BL1, R2, G2, BL2, LAT);
 
@@ -64,7 +64,7 @@ void setup() {
 	matrix.fillCircle(16, 16, 6, color);
 
 	os_timer_setfn(&updateTimer, updateDisplay, NULL);
-	os_timer_arm(&updateTimer, 5, true);
+	os_timer_arm(&updateTimer, 2, true);
 }
 
 // the loop function runs over and over again until power down or reset

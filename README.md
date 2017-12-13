@@ -1,4 +1,7 @@
 # ESP8266-RGB-Matrix-Panel
+
+[ESP32 Version(recommended)](https://github.com/VGottselig/ESP32-RGB-Matrix-Display)
+
 Arduino library and example code for the 64x32 <a href="http://www.aliexpress.com/item/P3-RGB-pixel-panel-HD-display-Sale-Items-P3-HD-full-color-LED-video-wall-192/32575366658.html"> RGB matrix panel</a> on ESP8266<br>
 50% CPU Load <br>
 4096 Colors @ 30FPS<br>
